@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% load i18n %} 
+{% block head_title %}{% trans "product detail" %}{% endblock %}
+{% block content %}
+
+<!-- start main content -->
+<main class="main-container">
+<section class="product_content_area pt-40">
+	<!-- start of page content -->
+
+	<div class="lookcare-product-single container">
+		{% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message.tags }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+		<div class="row">
+
+			<div class="main col-xs-12" role="main">
+
+				<div class=" product">
+
+					<div class="row">
+
+						<div class="col-md-5 col-sm-6 summary-before ">
+
+							<div class="product-slider product-shop">
+								<span class="onsale">Sale!</span>
+								<ul class="slides">
+									<li data-thumb="{{item.image.url}}">
+										<a href="{{item.image.url}}" data-imagelightbox="gallery" class="hoodie_7_front">
+											<img src="{{item.image.url}}" class="attachment-shop_single" alt="image">
+										</a>
+									</li>
+									
+
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-md-7 product-review entry-summary">
+
+							<h1 class="product_title">{{item.title}}</h1>
+
+							<div class="woocommerce-product-rating">
+								<div class="star-rating" title="Rated 4.00 out of 5">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-o"></i>
+								</div>
+								<a href="#reviews" class="woocommerce-review-link">(<span class="count">3</span> customer reviews)</a>
+							</div>
+
+							<div>
+								<h5 class="price"> {% if item.discount_price%}
+				              <span class="mr-1">&#8358;{{item.discount_price}} </span>
+				              <span class="">
+				                <del>&#8358; {{item.price}}  </del></span>
+				              {% else%}
+				              <span class="mr-1">&#8358;{{item.price}} </span>
+				              {% endif%}</h5>
+							</div>
+
+							<p>{{item.description}}</p>
+
+
+							<a class="btn btn-primary btn-md my-0 p" href="{{item.get_add_to_cart_url}}">Add to cart
+				                <i class="fas fa-cart-plus ml-1"></i>
+				              </a>
+				              <a class="btn btn-danger btn-md my-0 p" href="{{item.get_remove_from_cart_url}}">Remove from cart
+				                <i class="fa fa-cart-arrow-down ml-1"></i>
+				              </a>
+
+							<div class="product_meta">
+								
+
+
+								<span class="posted_in">Categories: <a href="{{item.category.get_absolute_url}}" rel="tag">{{item.category}}</a>, 
+									<a href="{{item.subCategory.get_absolute_url}}">{{item.subcategory}}</a>.</span>
+
+
+							</div>
+
+							
+
+						</div>
+						<!-- related product -->
+
+					</div>
+					<div class="tab-content">
+								<section class="related-products">
+
+									<h3 class="section-title">Related Products</h3>
+
+									<div class="related-products-wrapper row">
+										{% include 'product.html' %}
+
+										
+
+									</div>
+
+								</section>
+							</div>
+
+					<div class="wrapper-description">
+
+						<ul class="tabs-nav clearfix">
+							<li class="active">Review</li>
+							
+						</ul>
+						<div class="tabs-container product-comments">
+
+
+
+							<div class="tab-content">
+								
+
+								<div class="panel entry-content">
+
+									<div id="reviews">
+										<div class="row">
+											<div class="col-md-6">
+												<div id="comments">
+													<h3>3 reviews for Ship Your Idea</h3>
+
+													<ol class="commentlist">
+												
+														<!-- #comment-## -->
+														<li class="comment depth-1">
+
+															<div class="comment_container">
+
+																<div class="comment-text">
+
+																	<div class="star-rating" title="Rated 3 out of 5">
+																	</div>
+
+																	<p class="meta">
+                                                                            <span class="star-rating" title="Rated 4.00 out of 5">
+										                                            <i class="fa fa-star"></i>
+										                                            <i class="fa fa-star"></i>
+										                                            <i class="fa fa-star"></i>
+										                                            <i class="fa fa-star"></i>
+										                                            <i class="fa fa-star"></i>
+										                                        </span>
+																		<strong>Maria</strong> – <time datetime="2013-06-07T15:53:31+00:00">June 7, 2013</time>:
+																	</p>
+
+
+																	<div class="description">
+																		<p>Ship it!</p>
+																	</div>
+																</div>
+															</div>
+														</li>
+														<!-- #comment-## -->
+													</ol>
+
+
+												</div>
+
+											</div>
+											<div class="col-md-6">
+												<div id="review_form_wrapper">
+													<div id="review_form">
+														<div id="respond" class="comment-respond">
+															<h3 class="comment-reply-title">Add a review </h3>
+															<form action="#" method="post" id="commentform" class="comment-form">
+																<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text"></p>
+																<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text"></p>
+																<p class="comment-form-comment"><label for="comment">Your Review</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>
+																<p class="form-submit">
+																	<input name="submit" type="submit" id="submit" class="submit" value="Submit">
+																</p>
+															</form>
+														</div>
+														<!-- #respond -->
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="clear"></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+
+
+				</div>
+				<!-- #product-293 -->
+
+
+
+			</div>
+			<!-- end of main -->
+
+		</div>
+		<!-- end of .row -->
+
+	</div>
+
+	<!-- end of page content -->
+</section>
+
+<!-- service area -->
+	<section class="block gray no-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content-box no-margin go-simple">
+						<div class="mini-service-sec">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa fa-paper-plane"></i>
+										<div class="mini-service-info">
+											<h3>Worldwide Delivery</h3>
+											<p>unc tincidunt, on cursusau gmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa  fa-newspaper-o"></i>
+										<div class="mini-service-info">
+											<h3>Worldwide Delivery</h3>
+											<p>unc tincidunt, on cursusa ugmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa fa-medkit"></i>
+										<div class="mini-service-info">
+											<h3>Friendly Stuff</h3>
+											<p>unc tincidunt, on cursusau gmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa  fa-newspaper-o"></i>
+										<div class="mini-service-info">
+											<h3>24/h Support</h3>
+											<p>unc tincidunt, on cursusa ugmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+							</div>
+						</div><!-- Mini Service Sec -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="clearfix"></div>
+<!-- end service area -->
+</main>
+<!-- end main content -->
+{% endblock %}

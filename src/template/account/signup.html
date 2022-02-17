@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
+{% block content %}
+<!-- end header -->
+
+<!-- start main content -->
+<main class="container">
+
+	<section>
+
+		<div class="signuppanel">
+
+			<div class="row">
+				
+				<div class="col-md-6">
+					{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+					  {{ message.tags }}
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					{% endfor %}
+				{% endif %}
+					<div class="signup-info">
+						<div class="logopanel">
+							<h1><span>ishop</span></h1>
+						</div><!-- logopanel -->
+
+						<div class="mb20"></div>
+
+						<h5><strong>Bootstrap 3 Ecommerce Template!</strong></h5>
+						<p>Lookcare is a great theme that is perfect any browser.</p>
+						<p>Below are some of the benefits you can have when purchasing this template.</p>
+						<div class="mb20"></div>
+
+						<div class="feat-list">
+							<i class="fa fa-wrench"></i>
+							<h4 class="text-success">Easy to Customize</h4>
+							<p>Lookcare is made using Bootstrap 3 so you can easily customize any element of this template following the structure of Bootstrap 3.</p>
+						</div>
+
+					\
+
+						<div class="feat-list mb20">
+							<i class="fa fa-search-plus"></i>
+							<h4 class="text-success">Retina Ready</h4>
+							<p>When a user load a page, a script checks each image on the page to see if there's a high-res version of that image. If a high-res exists, the script will swap that image in place.</p>
+						</div>
+
+						<h4 class="mb20">and much more...</h4>
+
+					</div><!-- signup-info -->
+
+				</div><!-- col-sm-6 -->
+
+				<div class="col-md-6">
+
+					<form method="post" action="{% url 'account_signup' %}">
+						{% csrf_token %}
+						
+
+						<h3 class="nomargin">Sign Up</h3>
+						<p class="mt5 mb20">Already a member? <a href="{{ login_url }}"><strong>Sign In</strong></a></p>
+
+						<div class="mb10">
+							<label class="control-label" for="id_username">Username</label>
+							<input type="text" name="username" id="id_username" autocomplete="username" 
+							required minlength="1" maxlength="150" class="form-control" />
+						</div>
+
+						<div class="mb10">
+							<label class="control-label" for="id_password1">Password</label>
+							<input type="password" required name="password1" id="id_password1"
+							 autocomplete="new-password" class="form-control" />
+						</div>
+
+						<div class="mb10">
+							<label class="control-label" for="id_password2">Retype Password</label>
+							<input type="password"  name="password2" 
+							id=" id_password2" class="form-control" 
+							class="form-control" />
+						</div>
+
+						<div class="mb10">
+							<label class="control-label" for="id_email">Email Address</label>
+							<input type="text" class="form-control" 
+							name="email" id="id_email" autocomplete="email" />
+						</div>
+
+						
+						<br />
+						{% if redirect_field_value %}
+								<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+								{% endif %}
+
+						<button class="btn btn-success btn-block">Sign Up</button>
+					</form>
+				</div><!-- col-sm-6 -->
+
+			</div><!-- row -->
+
+
+
+		</div><!-- signuppanel -->
+
+	</section>
+</main>
+<!-- end  main content -->
+
+{% endblock %}

@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block head_title %}{% trans "Home Page" %}{% endblock %}
+{% block content %}
+
+<!-- start main content -->
+<main class="main-container">
+
+	<!-- new collection directory -->
+	<section id="content-block" class="slider_area">
+		<div class="container">
+			<div class="content-push">
+				<div class="row">
+
+					<div class="col-md-3 col-md-push-9">
+						<div class="sidebar-navigation">
+							<div class="title">Categories<i class="fa fa-angle-down"></i></div>
+							<div class="list">
+                                {% for cat in categories %}
+								<a class="entry" href="{{cat.get_absolute_url}}"><span><i class="fa fa-angle-right"></i>{{cat.name}}</span></a>
+								
+								
+                                {% endfor %}
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="col-md-9 col-md-pull-3">
+
+						<div class="header_slider">
+							<article class="boss_slider">
+								<div class="tp-banner-container">
+									<div class="tp-banner tp-banner0">
+										<ul>
+                                            {% for banner in banners %}
+											<!-- SLIDE  -->
+											<li data-link="#" data-target="_self" data-transition="flyin" data-slotamount="7" data-masterspeed="500" data-saveperformance="on">
+												<!-- MAIN IMAGE -->
+                                                <img src="{{banner.img.url}}" height="300px" alt="slidebg1" data-lazyload="{{banner.img.url}}" data-bgposition="left center" data-kenburns="off" data-duration="14000" data-ease="Linear.easeNone" data-bgpositionend="right center"
+                                                 />
+												<!-- LAYER NR. 1 -->
+												<div class="tp-caption very_big_white randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="140" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="500" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> Trendy </div>
+												<!-- LAYER NR. 2 -->
+												<div class="tp-caption very_large_white_text randomrotate customout rs-parallaxlevel-0" data-x="270" data-y="250" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="300" data-start="800" data-end="4800" data-endspeed="300" data-easing="easeInOutBack" data-endeasing="easeOutBack" data-elementdelay="0.1" data-endelementdelay="0.1" style="z-index: 2;"> SHOP NOW </div>
+												
+											</li>
+											{% endfor%}
+											
+										</ul>
+										<div class="slideshow_control"></div>
+									</div><!-- /.tp-banner -->
+								</div>
+							</article>
+						</div><!-- /.header_slider -->
+
+						<div class="clear"></div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end new collection directory -->
+
+
+	<!-- Shop Filter
+    ============================================= -->
+	<section id="shop" class="shop-4 pt-0">
+		<div class="container">
+			{% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message.tags }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+			<div class="row">
+				<!-- Projects Filter
+                ============================================= -->
+				<div class="col-md-12 ">
+                    <h5 class="p-2 mb-2 bg-dark text-white text-uppercase"> New Product </h5>
+				 </div>
+				<!-- .projects-filter end -->
+			</div>
+			<!-- new products -->
+			<!-- Projects Item
+            ============================================= -->
+			<div id="shop-all" class="row">
+			
+                {% include 'product.html' %}
+			</div>
+			<!-- .row end -->
+
+			<div class="row mb-2">
+				<div class="col-xs-12 col-sm-12 col-md-12 text-center ">
+					<a class="btn btn-secondary" href="#">more products <i class="fa fa-plus ml-xs"></i></a>
+				</div>
+				<!-- .col-md-12 end -->
+			</div>
+			<!-- .row End -->
+			<div class="row">
+				<!-- Projects Filter
+                ============================================= -->
+				<div class="col-md-12 ">
+                    <h5 class="p-2 mb-2 bg-dark text-white text-uppercase"> Categories </h5>
+				 </div>
+				<!-- .projects-filter end -->
+			</div>
+
+			<div  class="row mb-2">
+			
+				{% for cats in categories %}
+				  
+
+        <div class=" col-md-4 mb-4">
+
+          <!--Card-->
+          <div class="card mb-2" >
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img src="{{cats.image.url}}" style=" height: 225px;" class="card-img-top"
+                alt="">
+              <a href="{{cats.get_absolute_url}}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--Card image-->
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              
+                <h5></h5>
+              
+              
+              <p class="card-text"><a href="{{cats.get_absolute_url}}" class="grey-text">
+              	<a href="{{cats.get_absolute_url}}"><small class="text-muted">{{cats.name}}</small>
+              	</a></p>
+
+            
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+
+        </div>
+       {% endfor %}
+  
+			</div>
+                
+		</div>
+		<!-- .container end -->
+	</section>
+
+
+	<!-- Start Our Shop Items -->
+
+
+
+	<div class="bt-block-home-parallax" style="background-image: url('static/img/ecommerceshop.jpg');">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="lookbook-product">
+						<h2><a href="#" title="">Collection 2016 </a></h2>
+						<ul class="simple-cat-style">
+							<li><a href="#" title="">Dresses</a></li>
+							<li><a href="#" title="">Coats & Jackets</a></li>
+							<li><a href="#" title="">Jeans</a></li>
+						</ul>
+						<a href="#" title="">read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.bt-block-home-parallax -->
+
+
+
+	<section class="block gray no-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="content-box no-margin go-simple">
+						<div class="mini-service-sec">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa fa-paper-plane"></i>
+										<div class="mini-service-info">
+											<h3>Worldwide Delivery</h3>
+											<p>unc tincidunt, on cursusau gmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa  fa-newspaper-o"></i>
+										<div class="mini-service-info">
+											<h3>Worldwide Delivery</h3>
+											<p>unc tincidunt, on cursusa ugmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa fa-medkit"></i>
+										<div class="mini-service-info">
+											<h3>Friendly Stuff</h3>
+											<p>unc tincidunt, on cursusau gmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+								<div class="col-md-3">
+									<div class="mini-service">
+										<i  class="fa  fa-newspaper-o"></i>
+										<div class="mini-service-info">
+											<h3>24/h Support</h3>
+											<p>unc tincidunt, on cursusa ugmetus, lorem Hore</p>
+										</div>
+									</div><!-- Mini Service -->
+								</div>
+							</div>
+						</div><!-- Mini Service Sec -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+</main>
+<!-- end main content -->
+
+
+
+<div class="container">
+
+</div>
+
+
+{% endblock%}
